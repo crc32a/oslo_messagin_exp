@@ -7,8 +7,8 @@ import datetime
 import time
 import eventlet
 eventlet.monkey_patch()
-server = sys.argv.pop()
-topic = sys.argv.pop()
+server = "server"
+topic = "my_topic"
 
 from oslo.config import cfg
 from oslo import messaging
@@ -29,8 +29,8 @@ target = messaging.Target(topic=topic,version="5.0",
 
 
 class EndPoint(object):
-    target = target
     def __init__(self):
+        self.target = target
         self.throw_exception = False
     def toggle_exception(self,ctx,**kw):
         self.throw_exception = not self.throw_exception

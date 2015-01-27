@@ -30,12 +30,13 @@ mid = 0
 def cast(*args):
     global mid
     n=1
-    topic = None
-    server = None
+    topic = "my_topic"
+    server = "server"
+    ctx = client.prepare()
     if len(args)>=1:
         n = args[0]
     if len(args)>=2:
-        ctx = client.prepare(topic=args[1])
+        ctx = ctx.prepare(topic=args[1])
     if len(args)>=3:
         ctx = ctx.prepare(server=args[2])
     for i in xrange(0,n):
